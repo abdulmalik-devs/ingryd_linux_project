@@ -1,7 +1,3 @@
-Certainly! Below is a simple representation of the information provided in a README file format. Note that a README file typically contains more details and specific instructions, but this is a basic example:
-
----
-
 # File Sharing Protocols - Samba and NFS
 
 ## Overview
