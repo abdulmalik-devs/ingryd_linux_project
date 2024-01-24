@@ -110,4 +110,4 @@ Feel free to contribute to the project and improve the scripts!
 ### Author
 
 - **Author:** Abdulmalik Ololade
-- **Contact:** [Email Abdulmalik](mailto:malexmazzy@gmail.com)
+- **Contact:** [Abdulmalik Ololade](mailto:malexmazzy@gmail.com)
