@@ -1,0 +1,50 @@
+- name: Install Apache, PHP support and Htop
+  tags: apache,apache2,web_server,ubuntu
+  apt:
+    name: 
+      - apache2
+      - libapache2-mod-php
+    state: latest
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install Apache, PHP support and Htop
+  tags: apache,httpd,web_server,rocky
+  dnf:
+    name:
+      - httpd
+      - php
+    state: latest
+  when: ansible_distribution == "Rocky"
+
+- name: Copy default html file for sites
+  tags: apache,apache2,httpd
+  copy:
+    src: default_site.html
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Start httpd (Rocky)
+  tags: apache,httpd,rocky
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+  when: ansible_distribution == "Rocky"
+
+- name: Change email address for admin (Rocky)
+  tags: apache,httpd,rocky
+  lineinfile:
+    path: /etc/httpd/conf/httpd.conf
+    regexp: '^ServerAdmin'
+    line: ServerAdmin martin.mato@ingrydacademy.com
+  when: ansible_distribution == "Rocky"
+  register: httpd
+
+- name: Restart httpd
+  tags: apache,rocky,httpd
+  service:
+    name: httpd
+    state: restarted
+  when: httpd.changed

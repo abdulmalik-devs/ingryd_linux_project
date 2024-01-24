@@ -1,0 +1,19 @@
+- name: Install Samba
+  package:
+    name: samba
+    state: latest
+
+
+- name: Install Unzip
+  package:
+    name: unzip
+
+- name: Install OpenTofu
+  unarchive:
+    src: https://github.com/opentofu/opentofu/releases/download/v1.6.0-rc1/tofu_1.6.0-rc1_darwin_amd64.zip
+    dest: /usr/local/bin
+    remote_src: yes
+    mode: 0755
+    owner: root
+    group: root
+

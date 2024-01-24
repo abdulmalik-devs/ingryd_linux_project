@@ -1,0 +1,42 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+# Plays for all hosts
+
+  - name: Install Updates (Rocky)
+    dnf:
+      update_only: yes
+      update_cache: yes
+    when: ansible_distribution == "Rocky"
+
+  - name: Install Updates (Ubuntu)
+    apt:
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+
+- hosts: all
+  become: true
+  roles:
+    - base
+
+
+- hosts: web_servers
+  become: true
+  roles:
+    - web_servers
+
+
+- hosts: db_servers
+  become: true
+  roles:
+    - db_servers
+
+
+- hosts: file_servers
+  become: true
+  roles:
+    - file_servers

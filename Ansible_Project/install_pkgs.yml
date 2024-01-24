@@ -1,0 +1,14 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Install Apache, PHP support and Htop on Ubuntu and Rocky
+    package:
+      update_cache: yes
+      name: 
+        - "{{ apache_package }}"
+        - "{{ php_support }}"
+        - "{{ htop_package }}"
+      state: latest
